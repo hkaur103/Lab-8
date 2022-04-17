@@ -1,7 +1,7 @@
 from ntpath import join
 from tkinter import *
 from tkinter import ttk
-from pokeapi import get_pokemon_info
+from pokeapii import get_pokemon_info  
 
 def main():
     root = Tk()
@@ -28,11 +28,10 @@ def main():
         poke_dict = get_pokemon_info(pokemon_name)
         if poke_dict:
             lbl_height_val['text']= str(poke_dict['height']) + ' dm'
-            types_list = (t["type"]['name'] for t in poke_dict['type'])
+            lbl_weight_val['text']= str(poke_dict['weight']) + ' hg'
+            types_list = (t['type']['name'] for t in poke_dict['types'])
             lbl_type_val['text']= ', '.join(types_list)
-
-
-        print("Button Clicked")
+            #pgp_hp['value']=poke_dict['stats'][0]['base_stat']
 
     btnn_getinfo = ttk.Button(frm_user_input, text = "Get Info", command = btnn_get_info_click)
     btnn_getinfo.grid(column=2, row=0,padx=10, pady=10)
@@ -51,8 +50,11 @@ def main():
     lbl_type.grid(row=500, column=100)
     lbl_type_val = ttk.Label(frm_Info, text = "TBD")
     lbl_type_val.grid(row=500, column=200)
-
-
+ 
+    #lbl_hp = ttk.Label(frm_Stats, text = 'HP')
+    #lbl_hp.grid(row= 100, column=100)
+    #pgp_hp = ttk.Progressbar(frm_Stats, length=200 , maximum=225)
+    #pgp_hp.grid(row=100, column=200)
 
     
     root.mainloop()
