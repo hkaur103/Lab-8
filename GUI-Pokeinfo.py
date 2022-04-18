@@ -5,12 +5,11 @@ from pokeapii import get_pokemon_info
 
 def main():
     root = Tk()
-    root.title("PokeInfo")
-    #root.iconbitmap("Poke-Ball.ico")
+    root.title("Pokemon Information")
+    root.iconbitmap("Poke-Ball.ico")
     
     frm_user_input = ttk.Frame(root)
-    frm_user_input.grid(row=0, column=0, columnspan=2, padx=20, pady=20)
-
+    frm_user_input.grid(row=0, column=0, columnspan=2, padx=15, pady=15)
     frm_Info = ttk.LabelFrame(root, text="Info")
     frm_Info.grid(row=1, column=0, padx= 15 , pady= 15, sticky =N)
     
@@ -18,7 +17,7 @@ def main():
     frm_Stats.grid(row=1, column=1, padx= 15 , pady= 15, sticky =N)
 
     lbl_name = ttk.Label(frm_user_input, text = "Pokemon Name:")
-    lbl_name.grid(row=0, column=0, padx=10, pady=10)
+    lbl_name.grid(row=0, column=0, padx=9, pady=10)
     
     ent_name = ttk.Entry(frm_user_input)
     ent_name.grid(row=0, column=1, pady =10)
@@ -76,7 +75,7 @@ def main():
     pgp_spcl_attack = ttk.Progressbar(frm_Stats, length=200 , maximum=225)
     pgp_spcl_attack.grid(row=400, column=200)
 
-    lbl_spcl_defense = ttk.Label(frm_Stats, text = 'Special Defense')
+    lbl_spcl_defense = ttk.Label(frm_Stats, text = 'Special Defense:')
     lbl_spcl_defense.grid(row= 500, column=100, sticky = E)
     pgp_spcl_defense = ttk.Progressbar(frm_Stats, length=200 , maximum=225)
     pgp_spcl_defense.grid(row=500, column=200,  padx= 10, pady= 10)
