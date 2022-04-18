@@ -1,4 +1,5 @@
 from ntpath import join
+from threading import currentThread
 from tkinter import *
 from tkinter import ttk
 from pokeapii import get_pokemon_info  
@@ -6,22 +7,45 @@ from pokeapii import get_pokemon_info
 def main():
     root = Tk()
     root.title("Pokemon Information")
+    #graphical iconchanged 
     root.iconbitmap("Poke-Ball.ico")
-    
+
+    #added menu bar
+    menu = Menu(root)
+    root.config(menu=menu)
+    filemenu = Menu(menu)
+    menu.add_cascade(label='File', menu=filemenu)
+    filemenu.add_command(label='New')
+    filemenu.add_command(label='Open')
+    filemenu.add_separator()
+    filemenu.add_command(label='Exit', command=root.quit)
+    helpmenu = Menu(menu)
+    menu.add_cascade(label='Help', menu=helpmenu)
+    helpmenu.add_command(label='About')
+
+
+
+    # first row in which we put name of pokemon
     frm_user_input = ttk.Frame(root)
     frm_user_input.grid(row=0, column=0, columnspan=2, padx=15, pady=15)
+
+    # for info side
     frm_Info = ttk.LabelFrame(root, text="Info")
     frm_Info.grid(row=1, column=0, padx= 15 , pady= 15, sticky =N)
     
+    # stats of pokemon
     frm_Stats = ttk.LabelFrame(root, text="Stats")
     frm_Stats.grid(row=1, column=1, padx= 15 , pady= 15, sticky =N)
 
-    lbl_name = ttk.Label(frm_user_input, text = "Pokemon Name:")
+    #labeled user ipput and some background and foreground colour and made text bold
+    lbl_name = ttk.Label(frm_user_input, text = "Pokemon Name:",foreground = 'red', background=  'yellow', font ='bold')
     lbl_name.grid(row=0, column=0, padx=9, pady=10)
     
+    #puttihn entry into a table that would display values
     ent_name = ttk.Entry(frm_user_input)
     ent_name.grid(row=0, column=1, pady =10)
 
+    #function to run button click
     def btnn_get_info_click():
         pokemon_name = ent_name.get()
         poke_dict = get_pokemon_info(pokemon_name)
@@ -39,7 +63,8 @@ def main():
 
     btnn_getinfo = ttk.Button(frm_user_input, text = "Get Info", command = btnn_get_info_click)
     btnn_getinfo.grid(column=2, row=0,padx=10, pady=10)
-
+    
+    #height
     lbl_height = ttk.Label(frm_Info, text ="Height:")
     lbl_height.grid(row=100, column=100)
     lbl_height_val = ttk.Label(frm_Info, text = "TBD")
