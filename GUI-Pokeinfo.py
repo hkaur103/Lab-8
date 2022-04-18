@@ -10,7 +10,7 @@ def main():
     #graphical iconchanged 
     root.iconbitmap("Poke-Ball.ico")
 
-    #added menu bar
+    #added menu bar, in which I added help and file menu
     menu = Menu(root)
     root.config(menu=menu)
     filemenu = Menu(menu)
@@ -37,7 +37,7 @@ def main():
     frm_Stats = ttk.LabelFrame(root, text="Stats")
     frm_Stats.grid(row=1, column=1, padx= 15 , pady= 15, sticky =N)
 
-    #labeled user ipput and some background and foreground colour and made text bold
+    #labeled user ipput and sfilled background and foreground with colour and made text bold.
     lbl_name = ttk.Label(frm_user_input, text = "Pokemon Name:",foreground = 'red', background=  'yellow', font ='bold')
     lbl_name.grid(row=0, column=0, padx=9, pady=10)
     
